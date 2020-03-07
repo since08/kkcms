@@ -1,0 +1,15 @@
+- url = @hotel_room.new_record? ? collection_path : resource_path(@hotel_room)
+= semantic_form_for @hotel_room, url: url do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :hotel, collection: [[@hotel.title, @hotel.id]], prompt: true
+    = f.input :title
+    = f.input :text_tags, hint: '每个标签以逗号分开。例： WIFI, 双床'
+    = f.input :text_notes, hint: '每个提示以逗号分开。例： 含早餐, 可住两人'
+    = f.input :room_num_limit
+    = f.semantic_fields_for :week_prices do |form|
+      - HotelRoomPrice::WDAYS.each do |wday|
+        = form.input wday,
+         input_html: { value: @hotel_room.send("#{wday}_price")&.price || @week_prices_params&.fetch(wday) }
+    = f.input :published
+  = f.actions

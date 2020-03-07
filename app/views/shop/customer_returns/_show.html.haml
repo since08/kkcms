@@ -1,0 +1,65 @@
+%div#customer_return_show{style: 'min-width: 900px; width: 70%; margin: auto; font-size: 14px'}
+  - order = resource.order
+  %div.action{style: 'font-size: 16px;'}
+    %span
+      %b=I18n.t("customer_return.#{resource.return_type}")
+      %b :
+      %b=I18n.t("customer_return.#{resource.return_status}")
+    %span{style: 'margin-left:30px;'}
+      订单:
+      = link_to order.order_number, shop_order_path(order), target: '_blank'
+    - if resource.pending?
+      %span{style: 'margin-left:30px;'}
+        =link_to '允许退换货', agree_shop_customer_return_path(resource), remote:true
+      %span{style: 'margin-left:15px;'}
+        =link_to '拒绝退换货', refuse_shop_customer_return_path(resource), remote:true
+  %hr
+  %div.return_items
+    %table
+      %thead
+        %tr
+          %th 商品名称
+          %th 商品图片
+          %th 原始价格
+          %th 实付价格
+          %th 购买数量
+          %th 商品参数
+      %tbody
+        - resource.return_items.each do |item|
+          %tr
+            - order_item = item.order_item
+            - product = order_item.product
+            - variant = order_item.variant
+            %th=product.title
+            - img = variant&.image&.preview || product.preview_icon
+            %th= image_tag(img, height: 200)
+            %th= order_item.original_price
+            %th= order_item.price
+            %th= order_item.number
+            %th= order_item.sku_value.join('，')
+  %hr
+  %div.refund_info
+    %p
+      用户：
+      = link_to resource.user.nick_name, admin_user_path(resource.user), target: '_blank'
+    %p
+      订单编号：
+      = link_to order.order_number, shop_order_path(order), target: '_blank'
+    %p
+      退换类型：
+      = I18n.t("customer_return.#{resource.return_type}")
+    %p
+      退换状态：
+      = I18n.t("customer_return.#{resource.return_status}")
+    %p="订单实付金额：#{order.final_price} (含快递：#{order.shipping_price})"
+    %p="已退款金额：#{order.refunded_price}"
+    %p
+      ="申请退款金额：#{resource.refund_price}"
+      = link_to '修改金额', change_refund_price_shop_customer_return_url(resource), remote: true
+    %p="退换货说明：#{resource.memo}"
+    -#%p.refund_images
+    -#  上传的凭证：
+    -#  - resource.product_refund_images.each do |image|
+    -#    %span=link_to image_tag(image.image_url, height: 150), image.image_url
+  %hr
+  %p="审核备注：#{resource.admin_memo}"

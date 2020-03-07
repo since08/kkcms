@@ -1,0 +1,127 @@
+.text_sku { color: #999999; }
+
+.shop-orders {
+  .order_detail {
+    margin-bottom: 20px;
+  }
+
+  .order-header {
+    border: 1px solid #cccccc;
+    background: #cccccc;
+    padding: 10px;
+    div {
+      border-right: 1px solid darkgray;
+      padding-right: 10px;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .last-column {
+      border: none;
+    }
+  }
+
+  .order-table {
+    display: flex;
+    .order-left {
+      flex: 1;
+    }
+
+    .order-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 15%;
+      border-left: 1px solid #eeeeee;
+      div.tr {
+        padding: 10px;
+      }
+      :nth-child(2) {
+        div {
+          padding: 10px 10px;
+          border-left: 1px solid #eeeeee;
+        }
+      }
+    }
+  }
+
+  .order-left {
+    div.tr {
+      display: flex;
+      >div {
+        flex: 1;
+        padding: 15px 10px 15px 0px;
+        border-bottom: 1px solid #cccccc;
+        span{
+          margin-left: 200px;
+        }
+      }
+    }
+  }
+}
+
+.shop-order-detail {
+  font-size: 14px;
+
+  .header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #9c9c9c;
+  }
+  .header > div {
+    span {
+      margin-right: 40px;
+    }
+    span.multi-status {
+      float: right;
+      a, a:link {
+        padding: 2px 10px;
+        text-decoration: none;
+        border: 1px solid #cccccc;
+      }
+    }
+  }
+
+  .body > .content {
+    padding: 23px 0;
+    width: 90%;
+
+    >div {
+      padding: 8px 0;
+    }
+
+    >div span{
+      margin-right: 40px;
+    }
+
+    >div table{
+      border-collapse: collapse;
+      tr {
+        height: 10px;
+      }
+      tr, td {
+        border-bottom: 1px solid #bbbbbb;
+      }
+    }
+    :last-child > span {
+      float: right;
+      margin-right: 80px;
+    }
+  }
+
+  .body > .user_info {
+    >div>:first-child {
+      border-bottom: 1px solid #b3b3b3;
+    }
+    div{
+      padding: 10px 0;
+
+      span {
+        margin-right: 100px;
+      }
+    }
+  }
+}
+#my_express_id{
+  iframe {
+    margin-left: 50px;
+  }
+}

@@ -1,0 +1,7 @@
+%div.silence_options
+  = form_tag silence_user_admin_user_path, method: 'post', remote: true do
+    %div 禁言后，用户将不能发出任何的消息，无法参与留言
+    %div= date_field_tag :silence_till, '01/01/2020', required: true
+    %div
+      = text_area_tag :silence_reason, '', placeholder: '请填写禁言/解禁的原因...'
+      = submit_tag '提交'

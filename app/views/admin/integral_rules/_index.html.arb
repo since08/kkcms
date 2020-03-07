@@ -1,0 +1,8 @@
+context.instance_eval do
+  column(:id)
+  column(:option_type_alias, sortable: false)
+  column(:limit_times)
+  column(:points)
+  column(:opened, sortable: false)
+  actions
+end

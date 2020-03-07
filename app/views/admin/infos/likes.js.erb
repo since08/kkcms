@@ -1,0 +1,8 @@
+$('.info_likes').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('likes', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '28%',
+    title: '点赞数'
+});

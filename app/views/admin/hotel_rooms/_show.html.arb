@@ -1,0 +1,65 @@
+context.instance_eval do
+  attributes_table do
+    row(:hotel)
+    row(:title)
+    row(:text_tags)
+    row(:text_notes)
+    row(:published)
+    HotelRoomPrice::WDAYS.each do |wday|
+      row(I18n.t "helpers.label.week_prices.#{wday}" ) { |room| room.send("#{wday}_price")&.price }
+    end
+    row(:room_num_limit)
+  end
+  columns do
+    column do
+      div style: 'float: right; padding: 5px; margin-top: 11px; margin-right: 10px;' do
+        link_to '增加特定价格', new_admin_hotel_room_room_price_path(resource), remote: true
+      end
+
+      div style: 'float: right; padding: 5px; margin-top: 11px; margin-right: 1px;' do
+        link_to '查看所有价格', admin_hotel_room_room_prices_path(resource)
+      end
+
+      div style: 'float: right; padding: 5px; margin-top: 11px; margin-right: 1px;' do
+        link_to '同步价格到其他房间', new_sync_prices_admin_hotel_hotel_room_path(resource.hotel, resource), remote: true
+      end
+
+      panel '指定日期的特定价格 (只显示从今天开始之后的日期)' do
+        table_for resource.prices.where('date >= ?', Date.current).where(sale_room_request_id: nil) do
+          column(:date)
+          column(:price)
+          column(:room_num_limit)
+          column(:room_sales)
+          column('操作') do |price|
+            span link_to('编辑', edit_admin_hotel_room_room_price_url(resource, price), remote: true)
+            span '|'
+            span link_to('删除', admin_hotel_room_room_price_url(resource, price),
+                         method: :delete,
+                         data: { confirm: '确定删除吗？' })
+          end
+        end
+      end
+    end
+
+    column do
+      div style: 'float: right; padding: 5px; margin-top: 11px; margin-right: 10px;' do
+        link_to '增加图片', new_admin_hotel_room_room_image_path(resource), remote: true
+      end
+
+      panel '房间图片列表' do
+        table_for resource.images do
+          column(:image, sortable: false) { |img| image_tag(img.preview, height: 150) }
+          column(:created_at)
+          column('操作') do |img|
+            span link_to('查看图片', img.image_url, target: '_blank')
+            span '|'
+            span link_to('删除', admin_hotel_room_room_image_path(resource, img),
+                         method: :delete,
+                         data: { confirm: '确定删除吗？' })
+          end
+        end
+      end
+    end
+  end
+
+end

@@ -1,0 +1,139 @@
+"zh-CN":
+  active_admin:
+    blank_slate:
+      link: ""
+    empty: "空"
+    scopes:
+      all: '全部'
+      local: '本地'
+      receiving: '收货'
+      unpaid: '待付款'
+      paid: '待发货'
+      delivered: '已发货'
+      completed: '已完成'
+      canceled: '已取消'
+      returning: '退货中'
+      returned: '已退货'
+      ex_rate: '汇率达人'
+      integral: '积分达人'
+      dating: '交友达人'
+      fast_food: '快餐热线'
+      public_service: '便民热线'
+    filters:
+      predicates:
+        from: '开始日期'
+        to: '结束日期'
+
+  publish: "发布"
+  unpublish: "取消发布"
+  publish_notice: "发布成功"
+  unpublish_notice: "取消发布成功"
+  sticky: "置顶"
+  unsticky: "取消置顶"
+  sticky_notice: "置顶成功"
+  unsticky_notice: "取消置顶成功"
+  excellent: '加入精选'
+  unexcellent: '取消精选'
+  hotel:
+    destroy_error: '已发布的酒店，不允许删除'
+  sauna:
+    destroy_error: '已发布的桑拿，不允许删除'
+  hotel_refund:
+    pending: '等待处理中'
+    refused: '已拒绝该申请'
+    completed: '已成功退款'
+    cancel_return: '该申请用户已撤消'
+  hotel_order:
+    paid: '已支付'
+    unpaid: '未支付'
+    confirmed: '已确认'
+    deleted: '已删除'
+    canceled: '已取消'
+    refunded: '已退款'
+  info:
+    destroy_error: '已发布的资讯，不允许删除'
+  activity:
+    destroy_error: '已发布的活动，不允许删除'
+  exchange_rate:
+    real_time: '实时汇率'
+    local: '本地汇率'
+    receiving: '收货汇率'
+  shipping:
+    free_shipping: '免邮'
+    number: '按件数计费'
+    weight: '按重量计费'
+  banner:
+    info: '资讯'
+    hotel: '酒店'
+  body_type:
+    long: '长帖'
+    short: '说说'
+  status:
+    pending: '审核中'
+    passed: '审核通过'
+    failed: '审核失败'
+    refused: '审核被拒'
+    canceled: '用户取消'
+  refund:
+    none: '正常'
+    open: '退款中'
+    close: '退款失败'
+    completed: '退款完成'
+  order:
+    unpaid: '待付款'
+    paid: '待发货'
+    delivered: '已发货'
+    completed: '已完成'
+    canceled: '已取消'
+  customer_return:
+    refund: '退款申请'
+    exchange_goods: '换货申请'
+    pending: '等待处理中'
+    refused: '已拒绝该申请'
+    completed: '该申请已成功处理'
+    cancel_return: '该申请用户已撤消'
+  comment_target:
+    topic: '说说|长帖'
+    info: '资讯'
+    hotel: '酒店'
+  coupon_type:
+    hotel: '酒店'
+    shop: '商城'
+    offline_store: '线下店铺'
+    new_user: '新用户'
+  coupon_status:
+    init: '未领取'
+    unused: '未使用'
+    used: '已使用'
+    refund: '已退还'
+  discount_type:
+    reduce: '立减'
+    full_reduce: '满减'
+    rebate: '折扣'
+  trader_type:
+    ex_rate: '汇率达人'
+    integral: '积分达人'
+    dating: '交友达人'
+  withdraw_status:
+    success: '提现成功'
+    failed : '提现失败'
+    pending: '提现申请中'
+  withdraw_type:
+    alipay: '支付宝'
+    bank: '银行卡'
+  hotline_type:
+    fast_food: '快餐热线'
+    public_service: '便民热线'
+  prize_type:
+    free: '无成本'
+    cheap: '小奖'
+    expensive: '大奖'
+  wheel_count:
+    'total': '总计'
+    'daily': '每日'
+  product:
+    'entity': '实物产品'
+    'virtual': '虚拟产品'
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"

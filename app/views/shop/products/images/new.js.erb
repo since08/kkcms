@@ -1,0 +1,9 @@
+$('form.admin_image').parents(".ui-dialog").remove();
+var html = "<%= j(render('shop/products/images/form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '70%',
+    title: '商品图片'
+});
+DpCropper.call($('#shop_image_image'), $('#cropbox'), { aspectRatio: 375/362 });

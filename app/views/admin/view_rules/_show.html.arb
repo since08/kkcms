@@ -1,0 +1,18 @@
+context.instance_eval do
+  div class: 'type_target_view' do
+    ul class: 'ui-tabs-nav' do
+       li link_to '新建任务规则', new_admin_view_rule_path
+    end
+  end
+
+  div class: 'tab-content' do
+    attributes_table do
+      row(:id)
+      row(:day)
+      row(:interval)
+      row(:min_increase)
+      row(:max_increase)
+      row(:hot)
+    end
+  end
+end

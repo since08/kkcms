@@ -1,0 +1,8 @@
+$('form.admin_image').parents(".ui-dialog").remove();
+var html = "<%= j(render('admin/saunas/images/form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '70%',
+    title: '上传图片'
+});

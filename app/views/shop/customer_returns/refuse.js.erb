@@ -1,0 +1,6 @@
+var html = "<%= j(render('refuse', remote: true)) %>";
+$(html).dialog({
+  modal: true,
+  width: '40%',
+  title: '拒绝退换货'
+});

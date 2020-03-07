@@ -1,0 +1,7 @@
+context.instance_eval do
+  column(:id)
+  column(:direct_award, sortable: false) { |i| best_in_place i, :direct_award, as: 'input', place_holder: '点我添加', url: [:admin, i] }
+  column(:indirect_award, sortable: false) { |i| best_in_place i, :indirect_award, as: 'input', place_holder: '点我添加', url: [:admin, i] }
+  column(:published, sortable: false) { |i| invite_award_publish_link(i) }
+  column :created_at
+end

@@ -1,0 +1,12 @@
+%div
+  - url = @method.new_record? ? shop_shipping_shipping_methods_path(@shipping) : shop_shipping_shipping_method_path(@shipping, @method)
+  = semantic_form_for @method, url: url, remote: true do |f|
+    = f.semantic_errors *f.object.errors.keys
+    = f.inputs do
+      = f.input :name
+      = f.input :first_item
+      = f.input :first_price
+      = f.input :add_item
+      = f.input :add_price
+      = f.input :default_method
+      = f.actions

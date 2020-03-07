@@ -1,0 +1,6 @@
+<% if @room_price.errors.blank? %>
+window.location.reload();
+<% else %>
+var html = "<%= j(render('form', remote: true)) %>";
+$('form.hotel_room_price').replaceWith(html);
+<% end %>

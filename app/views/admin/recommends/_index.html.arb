@@ -1,0 +1,17 @@
+context.instance_eval do
+  column(:source_image, sortable: false) { |recommend| image_tag(recommend.source_image, height: 150) }
+  column(:source_type) { |recommend| I18n.t("banner.#{recommend.source_type}") }
+  column('来源地址') do |recommend|
+    case recommend.source_type
+    when 'hotel'
+      link_to recommend.source_title, admin_hotel_path(recommend.source)
+    when 'info'
+      link_to recommend.source_title, admin_info_path(recommend.source)
+    else
+      link_to recommend.link, recommend.link
+    end
+  end
+  actions
+end
+
+

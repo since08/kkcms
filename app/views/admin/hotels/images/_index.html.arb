@@ -1,0 +1,19 @@
+context.instance_eval do
+  column(:id)
+  column(:image, sortable: false) { |img| image_tag(img.preview, height: 150) }
+  column(:created_at)
+  actions defaults: false do |img|
+    item I18n.t('active_admin.view'), img.image_url,
+         title:  I18n.t('active_admin.view'),
+         target: '_blank',
+         class:  'member_link'
+
+    item I18n.t('active_admin.delete'), resource_path(img),
+         title:  I18n.t('active_admin.delete'),
+         class:  'delete_link member_link',
+         method: :delete,
+         data:   { confirm: I18n.t('active_admin.delete_confirmation') }
+  end
+end
+
+

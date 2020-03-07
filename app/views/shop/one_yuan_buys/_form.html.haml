@@ -1,0 +1,11 @@
+- product = Shop::Product.find_by(id: params[:product_id]) || @one_yuan_buy.product
+= semantic_form_for @one_yuan_buy do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :product, collection: [[product.title, product.id]], include_blank: false
+    = f.input :saleable_num
+    = f.input :begin_time
+    = f.input :end_time
+    = f.input :viewable
+    = f.input :published
+    = f.action :submit, button_html: { data: { disable_with: '请稍等...' } }

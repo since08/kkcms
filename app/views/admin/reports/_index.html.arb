@@ -1,0 +1,16 @@
+context.instance_eval do
+  column :id
+  column :user do |report|
+    avatar_profile(report.user, size: 70)
+  end
+  column :target_type, sortable: false
+  column :target do |report|
+    target_show_path = "admin_#{report.target_type.downcase}_path"
+    link_to '查看内容', send(target_show_path, report.target)
+  end
+  column :body, sortable: false
+  column :created_at
+  actions name: '操作', defaults: false do |report|
+    item '忽略', ignore_admin_report_path(report), method: :post, data: { confirm: '确定吗？' }
+  end
+end

@@ -1,0 +1,12 @@
+= semantic_form_for [:admin, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :option_type_alias
+    = f.input :limit_times
+    = f.input :points
+    = f.input :option_type
+    = f.input :icon, as: :attachment,
+                     hint: '图片最大为 2MB',
+                     image: proc { |o| o.icon_path }
+    = f.input :opened
+  = f.actions

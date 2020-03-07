@@ -1,0 +1,12 @@
+
+%div{style: 'min-width: 300px;'}
+  %section#quick-errors
+    = render 'layouts/error_messages', object: @option_type
+
+  - url = quick_create_shop_product_option_types_path(@product)
+  = semantic_form_for @option_type, url: url, remote: true do |f|
+    = f.inputs '新建规格' do
+      - collection = [[@product.title, @product.id]]
+      = f.input :product, collection: collection, prompt: true
+      = f.input :name
+    = f.submit

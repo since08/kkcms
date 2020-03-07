@@ -1,0 +1,19 @@
+= semantic_form_for [:admin, @wheel_prize] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :wheel_element
+    = f.input :prize_type, collection: AdminTrans::WHEEL_PRIZE_TYPES, prompt: true
+    = f.input :name
+    = f.input :image, as: :attachment, required: true,
+                     hint: '图片最大为 2MB',
+                     image: proc { |o| o.preview_image }
+    = f.input :face_value, hint: '例：10元现金面值 10， 50积分面值 50'
+    = f.input :limit_per_day, hint: '例：威尼斯人酒店美食广场餐券每天 10 张'
+    = f.input :generation_rule, hint: '例：新增用户每增加13000人 出IPhoneXs'
+    ~ f.text_area :description
+  = f.submit data: { disable_with: '请稍等...' }
+
+:javascript
+  $(function() {
+    dpEditor.call($('#wheel_prize_description'), $('form.wheel_prize'));
+  });

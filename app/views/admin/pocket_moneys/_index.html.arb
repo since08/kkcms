@@ -1,0 +1,12 @@
+context.instance_eval do
+  column(:id)
+  column :user do |item|
+    avatar_profile(item.user, size: 70)
+  end
+  column :nick_name do |item|
+    item.user.nick_name
+  end
+  column(:memo, sortable: false) { |i| i.memo }
+  column :amount
+  column :created_at
+end

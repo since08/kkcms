@@ -1,0 +1,9 @@
+$('.silence_options').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('silence', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '45%',
+    title: '用户禁言/解禁',
+    position: { my: 'top', at: 'top+250' }
+});

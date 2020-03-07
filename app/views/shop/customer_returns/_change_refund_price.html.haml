@@ -1,0 +1,6 @@
+%div
+  = form_for change_refund_price_shop_customer_return_url(resource) do
+    %p 输入修改的金额
+    %p= text_field_tag :refund_price
+    %br
+    = submit_tag '确认'

@@ -1,0 +1,24 @@
+context.instance_eval do
+  column(:id)
+  column(:merchant_user)
+  column(:hotel)
+  column(:room_num)
+  column(:card_img) { |req| image_tag(req.card_img.url.to_s, height: 150) }
+  column(:checkin_date)
+  column(:price)
+  column(:is_sold)
+  column(:is_withdrawn)
+  column(:status) { |req| I18n.t("status.#{req.status}") }
+  actions defaults: false do |req|
+    item I18n.t('active_admin.view'), resource_url(req),
+         title:  I18n.t('active_admin.view'),
+         class:  'member_link'
+
+    if req.pending?
+      item '通过', pass_admin_sale_room_request_url(req), method: :post, class: 'member_link'
+      item '拒绝', new_refuse_admin_sale_room_request_url(req), remote: :true, class: 'member_link'
+    end
+  end
+end
+
+

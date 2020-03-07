@@ -1,0 +1,7 @@
+%div
+  - url = admin_sauna_sauna_images_path(@sauna)
+  = semantic_form_for @image, url: url, remote: true do |f|
+    = f.inputs style: 'margin-bottom: -10px;' do
+      = f.input :imageable, collection: [[@sauna.title, @sauna.id]], prompt: true
+      = f.input :image, as: :file, hint: '图片最大为 2MB'
+      = f.submit data: { disable_with: '请稍等...' }

@@ -1,0 +1,17 @@
+- status = @common_view_toggle.toggle_status ? 'on' : 'off'
+- hot_status = @common_view_toggle.hot
+
+%div.common_toggle_view
+  %div.toggle_form
+    = form_tag(views_admin_topic_path(resource), method: :post) do
+      %div.on_off
+        %span= label_tag 'on_off', '浏览量增长: '
+        %span= select_tag(:on_off, options_for_select([['开', 'on'], ['关', 'off']], status))
+      %div.hot_cold
+        %div
+          %span= radio_button_tag :type, "hot", hot_status
+          %span= label_tag :type, '热增长'
+          %span{style: 'margin-left: 25px'}= radio_button_tag :type, "cold", !hot_status
+          %span= label_tag :type, '冷增长'
+      %div
+        %span= submit_tag '保存', data: { confirm:'确定吗？' }

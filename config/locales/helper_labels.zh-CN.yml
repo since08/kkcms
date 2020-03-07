@@ -1,0 +1,11 @@
+"zh-CN":
+  helpers:
+    label:
+      week_prices:
+        mon: '星期一价格'
+        tue: '星期二价格'
+        wed: '星期三价格'
+        thu: '星期四价格'
+        fri: '星期五价格'
+        sat: '星期六价格'
+        sun: '星期日价格'

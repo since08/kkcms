@@ -1,0 +1,8 @@
+$('form.shop_shipping_method').parents(".ui-dialog").remove();
+var html = "<%= j(render('form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '70%',
+    title: '运费方式'
+});

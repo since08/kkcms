@@ -1,0 +1,67 @@
+%div.user-comment
+  %div.comment-header
+  %div.comment-main
+    - @comments.each do |comment|
+      %div.comment-body
+        %div
+          %span= comment.id
+        %div
+          %div.u-left
+            %span
+              = avatar_profile(comment.user, size: 60)
+          %div.u-right
+            %div
+              %span.nick_name
+                = comment.user.nick_name
+            %div
+              %span= truncate(comment.body, length: 63)
+        - target_type_str = comment.target_type.underscore
+        %div
+          %span= I18n.t("comment_target.#{target_type_str}")
+        %div
+          %span
+            - url = send("admin_#{target_type_str}_url", comment.target) + '#comment'
+            - title = comment.target.title
+            - link_title = title.blank? ? (comment.target.body.blank? ? image_tag(comment.target.cover_link.to_s, height: 100) : truncate(comment.target.body, length: 20)) : title
+
+            = link_to link_title, url, target: "_blank", rel: "nofollow"
+
+        %div
+          %span= comment.created_at.strftime('%Y-%m-%d')
+        %div
+          %span
+            = comment_excellent_link comment
+        %div
+          %span
+            = link_to '删除', delete_comment_admin_comment_path(comment), remote: true
+      %div.reply-container
+        - comment.replies.each do |reply|
+          %div.reply-body
+            %div{class: 'reply-body-left'}
+            %div{class: 'reply-body-right'}
+              %div
+                %div.u-left
+                  %span
+                    = avatar_profile(reply.user, size: 50)
+                %div.u-right
+                  %div
+                    - if reply.reply
+                      %span.nick_name= reply.user.nick_name
+                      %div
+                        %span 回复
+                        %span.nick_name #{reply.reply.user.nick_name}
+                        %span= truncate(reply.body, length: 63)
+                    -else
+                      %span.nick_name= reply.user.nick_name
+                      %div
+                        %span= truncate(reply.body, length: 63)
+              %div
+              %div
+                %span= comment.created_at.strftime('%Y-%m-%d')
+              %div
+                %span
+                  = link_to '删除', delete_reply_admin_reply_path(reply), remote: true
+
+  %div{style: 'text-align: right'}
+    %a{ href: '#', class: 'btn-move-page', 'data-type': 'top'}
+      %i{ class: 'fa fa-arrow-up' }

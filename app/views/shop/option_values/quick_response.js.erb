@@ -1,0 +1,6 @@
+<% if @option_value.errors.any? %>
+var html = "<%= escape_javascript(render 'layouts/error_messages', object: @option_value) %>";
+$('#quick-errors').html(html);
+<% else %>
+window.location.reload();
+<% end %>

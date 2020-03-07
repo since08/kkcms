@@ -1,0 +1,19 @@
+$('#my_express_id').parents(".ui-dialog").remove();
+<%- shipment = resource.product_shipment %>
+var html = "<div id='my_express_id' data-no='<%= shipment&.shipping_number %>' data-code='<%= shipment.express_code.express_code %>'></div>";
+$(html).dialog({
+    modal: true,
+    width: '1015px',
+    title: '物流详情',
+    position: { my: "top", at: " top+170px " }
+});
+
+expNo = $("#my_express_id").data('no');
+expCode = $("#my_express_id").data('code');
+window.KDNWidget.run({
+    "serviceType": "B",
+    "container": "my_express_id",
+    "showType":"normal",
+    "expCode": expCode,
+    "expNo": expNo
+});

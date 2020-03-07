@@ -1,0 +1,21 @@
+%div
+  %table.index_table
+    %thead
+      %tr
+        %th 头像
+        %th 昵称
+        %th 手机号
+        %th 是否有完成任务
+        %th 邀请类型
+        %th 注册时间
+    %tbody
+      - @relation_users.includes(:user).each do |item|
+        %tr
+          %td= avatar_profile(item.user, size: 60)
+          %td= link_to item.user.nick_name, admin_user_url(item.user)
+          %td= item.user.mobile
+          %td= item.new_user ? '未完成' : '已完成'
+          %td= item.p_user&.user.eql?(resource) ? '直接邀请' : '间接邀请'
+          %td= item.created_at
+  %div.index_foot
+    = paginate(@relation_users)

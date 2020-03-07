@@ -1,0 +1,6 @@
+%div
+  = form_for agree_shop_customer_return_path(resource) do
+    %p 输入 "confirm" 后确认提交
+    %p= text_field_tag :confirm_code
+    %br
+    = submit_tag '确认'

@@ -1,0 +1,9 @@
+context.instance_eval do
+  column(:id)
+  column(:name, sortable: false)
+  column(:image, sortable: false) { |element| img_link_to_show(element, element.image_url.to_s) }
+  column(:position)
+  actions
+end
+
+

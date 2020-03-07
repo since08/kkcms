@@ -1,0 +1,8 @@
+%div.new_coupon
+  = form_tag generate_coupons_admin_coupon_temp_path, method: :post do
+    %div
+      %span 生成数量：
+      %span= text_field_tag :number
+    %div
+      = submit_tag '提交'
+

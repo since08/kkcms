@@ -1,0 +1,15 @@
+context.instance_eval do
+  column(:image, sortable: false) { |banner| image_tag(banner.image, height: 150) }
+  column(:source_type) { |banner| I18n.t("banner.#{banner.source_type}") }
+  column('来源地址') do |banner|
+    case banner.source_type
+    when 'hotel'
+      link_to banner.source_title, admin_hotel_path(banner.source)
+    when 'info'
+      link_to banner.source_title, admin_info_path(banner.source)
+    else
+      link_to banner.link, banner.link
+    end
+  end
+  actions
+end

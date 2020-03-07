@@ -1,0 +1,24 @@
+context.instance_eval do
+  column(:id)
+  column(:user, sortable: false)
+  column(:wheel_prize, sortable: false)
+  column(:prize_type) {|prize| I18n.t("prize_type.#{prize.prize_type}")}
+  column(:is_expensive, sortable: false)
+  column(:used, sortable: false)
+  column(:used_time)
+  column(:used_memo)
+  column(:created_at)
+  actions defaults: false do |prize|
+    next if prize.used
+
+    if prize.wheel_prize.name == '100元现金红包'
+      item '发放现金', giving_cash_admin_wheel_user_prize_url(prize), class: 'member_link', method: :post,
+           data: { confirm: '确定发放吗？' }
+
+    else
+      item '兑奖', use_prize_admin_wheel_user_prize_url(prize), class: 'member_link', remote: true
+    end
+  end
+end
+
+

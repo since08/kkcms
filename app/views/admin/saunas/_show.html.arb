@@ -1,0 +1,14 @@
+context.instance_eval do
+  attributes_table do
+    row(:logo) { |sauna| image_tag(sauna.preview_logo, height: 150) }
+    row(:title)
+    row(:price)
+    row(:telephone)
+    row(:star_level)
+    row(:location) { |sauna| link_to sauna.location, "http://uri.amap.com/marker?poiid=#{sauna.amap_poiid}", target: '_blank'}
+    row(:amap_poiid)
+    row(:amap_location)
+    row(:published)
+    row(:description) { |sauna| sanitize sauna.description }
+  end
+end

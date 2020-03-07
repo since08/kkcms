@@ -1,0 +1,6 @@
+var html = "<%= j(render('agree_refund', remote: true)) %>";
+$(html).dialog({
+  modal: true,
+  width: '40%',
+  title: '同意退款'
+});

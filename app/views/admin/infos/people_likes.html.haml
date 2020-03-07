@@ -1,0 +1,13 @@
+%div
+  %table.index_table
+    %thead
+      %tr
+        %th 头像
+        %th 昵称
+    %tbody
+      - @like_by_users.each do |user|
+        %tr
+          %td= avatar(user.avatar_path)
+          %td= user.nick_name
+  %div.index_foot
+    = paginate(@like_by_users)

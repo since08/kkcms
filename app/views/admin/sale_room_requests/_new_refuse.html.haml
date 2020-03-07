@@ -1,0 +1,4 @@
+= form_tag refuse_admin_sale_room_request_url(resource) do
+  = label_tag '拒绝原因：'
+  = text_field_tag 'refused_memo', nil, placeholder: '请输入拒绝原因'
+  = submit_tag '提交'

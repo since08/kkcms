@@ -1,0 +1,8 @@
+- @comments = resource.comments
+- if resource.long?
+  = render 'admin/topics/long'
+- else
+  = render 'admin/topics/short'
+%div#comment
+  %h3 评论列表：
+  = render 'admin/comments/index'

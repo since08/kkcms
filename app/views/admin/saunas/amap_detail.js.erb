@@ -1,0 +1,13 @@
+// 逗号前的是经度
+<% locations = @poi['location'].split(',') %>
+$('#sauna_amap_location').val("<%= @poi['location'] %>")
+$('#sauna_longitude').val("<%= locations[0] %>")
+$('#sauna_latitude').val("<%= locations[1] %>")
+$('.get_amap_detail').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('amap_detail', remote: true)) %>";
+$(html).dialog({
+  modal: false,
+  width: '30%'
+});
+

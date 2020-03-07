@@ -1,0 +1,17 @@
+$('.award_coupon').parents(".ui-dialog").remove();
+var html = "<%= j(render('award', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '45%',
+    title: '发放优惠券',
+    position: { my: 'top', at: 'top+100' }
+});
+
+$(".coupon_input_user a").bind('click', function(){
+    mobile = $(".coupon_input_user input").val();
+    console.log(mobile);
+    $.ajax({
+        url: "/admin/users/search_mobile_user?mobile=" + mobile,
+        type: "GET"
+    });
+});

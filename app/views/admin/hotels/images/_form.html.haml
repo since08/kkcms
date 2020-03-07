@@ -1,0 +1,7 @@
+%div
+  - url = admin_hotel_images_path(@hotel)
+  = semantic_form_for @image, url: url, remote: true do |f|
+    = f.inputs style: 'margin-bottom: -10px;' do
+      = f.input :imageable, collection: [[@hotel.title, @hotel.id]], prompt: true
+      = f.input :image, as: :file, hint: '图片最大为 2MB'
+      = f.submit data: { disable_with: '请稍等...' }

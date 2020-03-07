@@ -1,0 +1,13 @@
+- user = resource.user
+%div.topic-container
+  %div.person
+    %div
+      = avatar(user.avatar_path, size: 80)
+    %div
+      %h3{ style: 'margin-left: 15px' }= user.nick_name
+      %p= resource.created_at.strftime("%F %T")
+      %p 阅读量：#{resource.total_views} &nbsp;点赞数：#{resource.likes_count} &nbsp;&nbsp;评论数 #{resource.total_comments}
+  %div
+    %div= resource.title
+  %div
+    %div= sanitize(body_filter_nbsp resource.body)

@@ -1,0 +1,51 @@
+.simditor-toolbar {
+    .toolbar-menu {
+        &.toolbar-menu-kkcolor, &.toolbar-menu-backgroundColor{
+            width: 96px;
+
+            .color-list {
+                height: 140px;
+                margin: 10px 6px 6px 10px;
+                padding: 0;
+
+                min-width: 0;
+
+                li {
+                    float: left;
+                    margin: 0 4px 4px 0;
+
+                    .font-color {
+                        display: block;
+                        width: 16px;
+                        height: 16px;
+                        background: #dfdfdf;
+                        border-radius: 2px;
+
+                        &:hover {
+                            opacity: 0.8;
+                        }
+
+                        &.font-color-default {
+                            background: #333333;
+                        }
+                    }
+
+                    //$font-colors: #E33737 #e28b41 #c8a732 #209361 #418caf #aa8773 #999999;
+                    $font-colors: #73fcd6 #00fcff #00d5ff #3daad6 #007aaa #ffd7d5 #ffacaa #d7aba9 #7a4442 #7b0c00 #ff7faa #ff4f79 #ff2941 #d92142 #ab1942 #E33737 #e28b41 #c8a732 #209361 #418caf #aa8773 #999999;
+                    $i: 1;
+                    @each $color in $font-colors {
+                        .font-color-#{$i} {
+                            background: $color;
+                        }
+                        $i: $i + 1;
+                    }
+                }
+            }
+        }
+
+        .color-input {
+            font-size: 13px;
+            padding: 5px;
+        }
+    }
+}

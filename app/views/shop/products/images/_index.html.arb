@@ -1,0 +1,13 @@
+context.instance_eval do
+  column(:id)
+  column('图片', sortable: false) { |image| image_tag(image.preview.to_s, height: 150) }
+  actions defaults: false do |image|
+    item '编辑', edit_shop_product_image_path(product, image),
+         class: 'member_link', remote: true
+    item '删除', shop_product_image_path(product, image),
+         class: 'member_link', method: :delete,
+         data: { confirm: '确定删除吗？' }
+  end
+end
+
+

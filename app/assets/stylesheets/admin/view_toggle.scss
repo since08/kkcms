@@ -1,0 +1,16 @@
+.common_toggle_view {
+  .toggle_form {
+    padding: 10px 40px;
+
+    .on_off>span:last-child{
+      margin-left: 20px;
+    }
+
+    .hot_cold {
+      >div:first-child {
+        padding: 10px;
+      }
+      padding: 5px 20px;
+    }
+  }
+}

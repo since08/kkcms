@@ -1,0 +1,8 @@
+$('form.hotel').parents(".ui-dialog").remove();
+var html = "<%= j(render('new_sync_prices', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '同步价格到其它房间'
+});

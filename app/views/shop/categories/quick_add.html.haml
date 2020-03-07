@@ -1,0 +1,13 @@
+%div{style: 'min-width: 300px;'}
+  %section#quick-errors
+    = render 'layouts/error_messages', object: @category
+
+  = semantic_form_for @category, url: quick_create_shop_categories_path, remote: true do |f|
+    = f.inputs '新建种类' do
+      - if @category.parent.present?
+        = f.input :parent, collection: [[@category.parent.name, @category.parent.id]], prompt: true
+      = f.input :name
+      = f.input :image, as: :attachment,
+                        hint: '图片最大为 2MB',
+                        image: proc { |o| o.preview_image }
+    = f.submit data: { disable_with: '请稍等...' }

@@ -1,0 +1,21 @@
+context.instance_eval do
+  selectable_column
+  column(:id)
+  column :user do |item|
+    avatar_profile(item.user, size: 70)
+  end
+  column :real_name, sortable: false
+  column :account_type, sortable: false do |item|
+    I18n.t("withdraw_type.#{item.account_type}")
+  end
+  column :account, sortable: false
+  column :account_memo, sortable: false
+  column :mobile, sortable: false do |item|
+    item.user.mobile
+  end
+  column :amount
+  column :option_status do |item|
+    I18n.t("withdraw_status.#{item.option_status}")
+  end
+  column :created_at
+end

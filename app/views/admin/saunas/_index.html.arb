@@ -1,0 +1,12 @@
+context.instance_eval do
+  column(:id)
+  column(:logo, sortable: false) { |sauna| img_link_to_show(sauna) }
+  column(:title, sortable: false)
+  column(:price)
+  column(:location) { |sauna| link_to sauna.location, "http://uri.amap.com/marker?poiid=#{sauna.amap_poiid}", target: '_blank'}
+  column(:amap_poiid)
+  column(:published, sortable: false) { |sauna| sauna_publish_link(sauna) }
+  actions
+end
+
+

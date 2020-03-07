@@ -1,0 +1,17 @@
+= semantic_form_for @merchant do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :name
+    = f.input :location
+    = f.input :telephone
+    = f.input :amap_poiid, hint: content_tag('a', '获取高德详情', class: 'get_amap_detail', style: 'cursor:pointer')
+    = f.input :amap_location
+  = f.submit data: { disable_with: '请稍等...' }
+
+:javascript
+  $(function() {
+    $('.get_amap_detail').click(function(){
+      let poiid = $('#shop_merchant_amap_poiid').val()
+      $.ajax({ url: '/shop/merchants/amap_detail?poiid=' + poiid })
+    })
+  });

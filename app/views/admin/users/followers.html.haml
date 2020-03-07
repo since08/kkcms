@@ -1,0 +1,13 @@
+%div
+  %table.index_table
+    %thead
+      %tr
+        %th 头像
+        %th 昵称
+    %tbody
+      - @followers.each do |user|
+        %tr
+          %td= avatar_profile(user, size: 60)
+          %td= user.nick_name
+  %div.index_foot
+    = paginate(@followers)

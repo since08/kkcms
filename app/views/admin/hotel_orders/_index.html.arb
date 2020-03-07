@@ -1,0 +1,31 @@
+context.instance_eval do
+  column(:id)
+  column(:user) { |order| link_to order.user.nick_name, admin_user_path(order.user), target: '_blank' }
+  column(:order_number)
+  column('酒店') do |order|
+    hotel = order.hotel_room.hotel
+    link_to hotel.title, admin_hotel_path(hotel), target: '_blank'
+  end
+  column('房间') do |order|
+    room = order.hotel_room
+    link_to room.title, admin_hotel_hotel_room_path(room.hotel_id, room), target: '_blank'
+  end
+  column(:checkin_date)
+  column(:checkout_date)
+  column(:room_num)
+  column(:final_price)
+  column(:status) { |order| I18n.t("hotel_order.#{order.status}") }
+  column(:pay_channel)
+  actions defaults: false do |order|
+    item I18n.t('active_admin.view'), resource_url(order),
+         title:  I18n.t('active_admin.view'),
+         target: '_blank',
+         class:  'member_link'
+
+    item '确认有房', confirm_admin_hotel_order_url(order), method: :post if order.paid?
+
+    item '取消确认有房', unconfirm_admin_hotel_order_url(order), method: :post if order.confirmed?
+  end
+end
+
+

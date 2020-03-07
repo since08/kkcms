@@ -1,0 +1,6 @@
+<% if @image.errors.blank? %>
+window.location.reload();
+<% else %>
+var html = "<%= j(render('admin/hotels/images/form', remote: true)) %>";
+$('form.admin_image').replaceWith(html);
+<% end %>

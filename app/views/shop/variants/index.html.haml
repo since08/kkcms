@@ -1,0 +1,55 @@
+%div.variants_manage
+  %div.panel
+    %h3 商品组合管理
+    %div.panel_contents
+      %ol.ol_controls
+        %li
+          %div
+            %label 商品规格
+          %div.product_option_operation
+            = render 'product_option_operation', product: @product
+            %div.variants
+              %table{style: 'font-size: 14px;'}
+                %thead
+                  %tr
+                    %th ID
+                    - @product.option_types.each do |type|
+                      %th=type.name
+                    %th 图片
+                    %th
+                      商品价格
+                      = editable_text_column @product.master, :original_price
+                    %th
+                      实付价格
+                      = editable_text_column @product.master, :price
+                    %th
+                      库存
+                      = editable_text_column @product.master, :stock
+                    %th
+                      重量(kg)
+                      = editable_text_column @product.master, :weight
+                    %th
+                      体积
+                      = editable_text_column @product.master, :volume
+                %tbody
+                  - @product.variants.each do |variant|
+                    %tr
+                      %td=variant.id
+                      - @product.option_types.each do |type|
+                        %td=variant.find_option_value(type)&.name
+                      %td= image_tag(variant.image&.preview.to_s, height: 150)
+                      %td= editable_text_column variant, :original_price
+                      %td= editable_text_column variant, :price
+                      %td= editable_text_column variant, :stock
+                      %td= editable_text_column variant, :weight
+                      %td= editable_text_column variant, :volume
+                      %td
+                        = link_to '编辑',
+                                  quick_edit_shop_product_variant_path(@product, variant),
+                                  class: 'fancybox action', data: { 'fancybox-type': 'ajax' }
+
+
+:javascript
+  $(function() {
+    $('a.fancybox').fancybox();
+  });

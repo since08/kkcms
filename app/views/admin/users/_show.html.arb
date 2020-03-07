@@ -1,0 +1,38 @@
+context.instance_eval do
+  attributes_table do
+    row(:user_uuid)
+    row(:user_name)
+    row(:nick_name)
+    row(:mobile)
+    row(:email)
+    row(:avatar) { |user| avatar_profile(user, size: 80) }
+    row(:birthday)
+    row(:signature)
+    row(:silenced)
+    row(:blocked)
+    row(:mark)
+    row(:r_level)
+    row(:new_user)
+    row(:latlng) { |user| "#{user.lat},#{user.lng}" }
+    row(:location) { |user| user.user_location }
+    row(:mark)
+    row(:created_at)
+  end
+
+  columns do
+    column do
+      panel '用户收货地址' do
+        table_for resource.shipping_addresses do
+          column('收货人') {|item| item['consignee']}
+          column('省份') {|item| item['province']}
+          column('城市') {|item| item['city']}
+          column('地区') {|item| item['area']}
+          column('详细地址') {|item| item['address']}
+          column('手机') {|item| item['mobile']}
+          column('邮编') {|item| item['zip']}
+          column('default')
+        end
+      end
+    end
+  end
+end

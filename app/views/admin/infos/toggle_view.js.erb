@@ -1,0 +1,8 @@
+$('.common_toggle_view').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('toggle_view', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '28%',
+    title: '浏览量管理'
+});

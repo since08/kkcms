@@ -1,0 +1,39 @@
+.img-circle{
+  border-radius: 50%;
+}
+
+.profile_container {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 35px;
+
+    .user_info .right, .account {
+      margin-left: 10px;
+      margin-top: 9px;
+    }
+    .account {
+      margin-right: 80px;
+      > div {
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  .middle {
+    margin-left: 35px;
+  }
+
+  .bottom {
+    margin: 6px 20px;
+  }
+}

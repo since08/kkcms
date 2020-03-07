@@ -1,0 +1,12 @@
+%div
+  - url = @room_price.new_record? ? admin_hotel_room_room_prices_path(@room) : admin_hotel_room_room_price_path(@room, @room_price)
+  = semantic_form_for @room_price, url: url, remote: true do |f|
+    = f.semantic_errors *f.object.errors.keys
+    = f.inputs do
+      = f.input :price
+      = f.input :date
+      = f.input :room_num_limit
+      = f.input :dates, as: :text,
+                        hint: '多个日期以英文逗号分割。如果此项输入了多个日期，单个日期的参数则无效',
+                        input_html: { rows: 5 }
+    = f.actions

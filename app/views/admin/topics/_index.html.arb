@@ -1,0 +1,39 @@
+context.instance_eval do
+  column :id
+  column :user do |topic|
+    avatar_profile(topic.user, size: 70)
+  end
+  column :cover_link, sortable: false do |topic|
+    link_to image_tag(topic.cover_link.to_s, height: 120), full_image(topic.cover_link.to_s), class: 'color-box'
+  end
+  column :title, sortable: false
+  column :body, sortable: false do |topic|
+    sanitize topic.body&.truncate(60)
+  end
+  column :body_type, sortable: false do |topic|
+    I18n.t("body_type.#{topic.body_type}")
+  end
+  column :address_title, sortable: false
+  column :total_views, &:total_views
+  column :likes_count do |topic|
+    link_to topic.likes_count, likes_admin_topic_path(topic)
+  end
+  column :total_comments, sortable: false do |topic|
+    link_to topic.total_comments, admin_comments_path(q: { target_id_eq: topic.id })
+  end
+  column :page_views, sortable: 'topic_counters.page_views' do |topic|
+    topic.topic_counter.page_views
+  end
+  column :view_increment, sortable: 'topic_counters.view_increment' do |topic|
+    best_in_place topic.topic_counter, :view_increment, as: 'input', place_holder: '点我添加', url: [:admin, topic.topic_counter]
+  end
+  column :reports_count
+  column(:status) { |topic| select_to_status(topic) }
+  column(:excellent) { |topic| topic_excellent_link topic }
+  column :created_at
+  actions name: '操作', defaults: false do |topic|
+    item '详情', admin_topic_path(topic)
+    item '浏览量', views_admin_topic_path(topic), remote: true
+    item ' 点赞', generate_likes_admin_topic_path(topic), method: :post
+  end
+end

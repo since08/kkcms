@@ -1,0 +1,42 @@
+context.instance_eval do
+  column(:id)
+  column(:nick_name, sortable: false)
+  column(:avatar, sortable: false) do |user|
+    avatar_profile(user, size: 80)
+  end
+  column(:mobile, sortable: false)
+  column(:email, sortable: false)
+  column(:signature, sortable: false)
+  column(:last_visit)
+  column(:login_days, sortable: 'user_counters.login_days') do |user|
+    if ENV['CURRENT_PROJECT_ENV'].eql?('test')
+      best_in_place user.counter, :login_days, as: :input, url: [:admin, user.counter]
+    else
+      user.counter.login_days
+    end
+  end
+  column(:share_count, sortable: 'user_counters.share_count') do |user|
+    user.counter.share_count
+  end
+  column(:invite_users, sortable: 'user_counters.invite_users') do |user|
+    link_to user.counter.invite_users, invites_admin_user_path(user)
+  end
+  column(:invite_count, sortable: 'user_counters.direct_invite_count') do |user|
+    link_to user.counter.direct_invite_count + user.counter.indirect_invite_count, invites_admin_user_path(user)
+  end
+  column :r_level do |user|
+    user.r_level.zero? ? "--" : "#{user.r_level}级"
+  end
+  column(:points, sortable: 'user_counters.points') do |user|
+    link_to user.counter.points, admin_integrals_path(q: { user_id_eq: user.id })
+  end
+  column(:total_pocket_money, sortable: 'user_counters.total_pocket_money') do |user|
+    link_to user.counter.total_pocket_money, admin_pocket_moneys_path(q: { user_id_eq: user.id })
+  end
+  column(:mark, sortable: false) { |i| best_in_place i, :mark, as: :input, url: [:admin, i] }
+  column(:level_special, sortable: false) { |i| best_in_place i, :level_special, as: :input, url: [:admin, i] }
+  column(:reg_date)
+  column(:latlng) { |i| "#{i.lat}~#{i.lng}" }
+  column(:blocked, sortable: false)
+  actions name: '操作'
+end

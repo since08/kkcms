@@ -1,0 +1,11 @@
+= semantic_form_for [:admin, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :platform, as: :select, collection: AppVersion.platforms.keys
+    = f.input :version
+    = f.input :title
+    = f.input :content
+    = f.input :download_url
+    = f.input :force_upgrade
+  = f.actions
+

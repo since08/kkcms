@@ -1,0 +1,12 @@
+context.instance_eval do
+  column(:id)
+  column(:user)
+  column('头像', sortable: false) do |trader|
+    avatar_profile(trader.user, size: 80)
+  end
+  column('手机号') { |trader| trader.user.mobile }
+  column('邮箱') { |trader| trader.user.email }
+  column(:memo, sortable: false)
+  column(:score)
+  actions name: '操作'
+end

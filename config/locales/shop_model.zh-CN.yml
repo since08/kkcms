@@ -1,0 +1,79 @@
+"zh-CN":
+  activerecord:
+    models:
+      category: '种类'
+      shop/category: '种类'
+      product: '商品'
+      shop/product: '商品'
+      merchant: '商家'
+      shop/order: '订单'
+      one_yuan_buy: '一元购'
+      shipping: '邮费模板'
+      customer_return: '退换货'
+    attributes:
+      shop/category:
+        name: "分类名称"
+        image: "分类图片"
+      shop/product:
+        shipping: "邮费规则"
+        merchant: "所属商家"
+        title: "商品标题"
+        intro: "商品简介"
+        icon: "商品图标"
+        freight: "运费模板"
+        product_type: "商品类型"
+        published: "是否上架"
+        returnable: "是否支持退货"
+        recommended: "是否推荐"
+        description: "商品描述"
+        visible_discounts_list: "是否显示在折扣列表"
+      shop/variant:
+        original_price: "商品价格"
+        price: "实付价格"
+        stock: "库存"
+        weight: "商品重量(kg)"
+        volume: "商品体积"
+        origin_point: "发货地点"
+      shop/option_type:
+        name: "名称"
+        product: "商品名"
+      shop/option_value:
+        name: "名称"
+        option_type: "规格名"
+      shop/order:
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
+        order_number: '订单号'
+      shop/shipping:
+        name: '名称'
+        express: '快递公司'
+        free_shipping: '是否免邮费'
+        calc_rule: '计费规则'
+      shop/shipping_method:
+        name: '名称'
+        first_item: '首项'
+        first_price: '首项价格'
+        add_item:  '续项'
+        add_price: '续项价格'
+        default_method: '默认计费方式'
+      shop/customer_return:
+        user: '用户'
+        order: '订单'
+        return_type: '退换类型'
+        return_status: '退换状态'
+        memo: '用户备注'
+        admin_memo: '管理员备注'
+      shop/one_yuan_buy:
+        product: '商品'
+        begin_time: '开始时间'
+        end_time: '结束时间'
+        saleable_num: '可卖的数量'
+        sales_volume: '销售数量'
+        published: '是否发布'
+        viewable: '是否显示在列表中'
+      shop/merchant:
+        name: "店名"
+        telephone: "电话"
+        location: "地址"
+        location: "地址"
+        amap_poiid: "高德地图poi"
+        amap_location: "高德经纬度"

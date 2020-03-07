@@ -1,0 +1,22 @@
+context.instance_eval do
+  column(:id)
+  column(:info_type)
+  column(:image, sortable: false) { |info| img_link_to_show(info, info.preview_image) }
+  column(:title, sortable: false)
+  column(:date, sortable: false)
+  column(:published, sortable: false) { |info| info_publish_link(info) }
+  column(:stickied, sortable: false) { |info| info_sticky_link(info) }
+  column :likes_count do |info|
+    link_to info.likes_count, people_likes_admin_info_path(info)
+  end
+  column :page_views
+  column :view_increment do |info|
+    best_in_place info, :view_increment, as: 'input', place_holder: '点我添加', url: [:admin, info]
+  end
+  actions name: '操作' do |info|
+    item '浏览量 ', views_admin_info_path(info), remote: true
+    item ' 随机点赞', likes_admin_info_path(info), remote: true
+  end
+end
+
+

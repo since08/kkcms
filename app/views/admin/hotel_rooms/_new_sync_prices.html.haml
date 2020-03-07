@@ -1,0 +1,13 @@
+%div
+  - url = sync_prices_admin_hotel_hotel_room_url(resource.hotel, resource)
+  - hotel = resource.hotel
+  - hotel.singleton_class.send(:attr_accessor, :is_cover)
+  = semantic_form_for hotel, url: url, method: :post do |f|
+    = f.semantic_errors *f.object.errors.keys
+    = f.inputs do
+      = content_tag(:h4, '被勾选的房间将同步当前日期及以后日期的价格')
+      = f.input :title, input_html: { disabled: true }
+      = f.input '当前房间', input_html: { disabled: true, value: resource.title }
+      = f.input :is_cover, label: '是否覆盖', as: :boolean, hint: '是否覆盖已存在相同日期的价格', collection: false
+      = f.input :sync_rooms, as: :check_boxes, label: '需同步价格的房间', collection: @rooms_collection
+    = f.submit '同步价格'

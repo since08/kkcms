@@ -1,0 +1,14 @@
+- region_codes = resource.shipping_regions.pluck(:code)
+
+%div{class: "shipping_method_region_select"}
+  - Province.all.each_with_index do |province, index|
+    - mod = index % 8
+    - if mod.eql?(0)
+      %div
+    - if region_codes.include?(province.province_id)
+      %span{ data:{ name: province.name, code: province.province_id, selected: 'true' }, class: 'blue' }= province.name
+    - else
+      %span{ data:{ name: province.name, code: province.province_id, selected: 'false' } }= province.name
+
+  %div
+    %button{ data: { remote_url: regions_shop_shipping_shipping_method_url } } 保存

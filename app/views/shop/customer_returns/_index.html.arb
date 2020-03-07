@@ -1,0 +1,11 @@
+context.instance_eval do
+  column(:user) { |c_return| link_to c_return.user.nick_name, admin_user_path(c_return.user), target: '_blank' }
+  column(:order) { |c_return| link_to c_return.order.order_number, shop_order_path(c_return.order), target: '_blank' }
+  column(:return_type) { |c_return| I18n.t("customer_return.#{c_return.return_type}") }
+  column(:return_status) { |c_return| I18n.t("customer_return.#{c_return.return_status}") }
+  column(:memo)
+  column(:admin_memo)
+  actions defaults: false do |c_return|
+    item '查看', shop_customer_return_path(c_return)
+  end
+end

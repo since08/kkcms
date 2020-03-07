@@ -1,0 +1,49 @@
+%div.shop-orders
+  - @orders.includes(:user, order_items: [:product, :recent_return]).each do |order|
+    %div.order_detail
+      %div.order-header
+        %div
+          %span 用户信息：
+          - user_info_string = "#{order.user.nick_name} | #{order.user.mobile} | #{order.user.email}"
+          %span= link_to user_info_string, admin_user_path(order.user), target: '_blank'
+        %div
+          %span 订单编号：
+          %span= order.order_number
+        %div
+          %span 下单时间：
+          %span= order.created_at
+        %div
+          %span= "合计：¥#{order.total_price}，实付：¥#{order.final_price} (含运费：¥#{order.shipping_price})"
+        %div{ class: 'last-column' }
+          %span 支付渠道：
+          %span= order.pay_channel
+      %div.order-table
+        - items = order.order_items
+        %div.order-left
+          %div.tr
+            %div 商品名称
+            %div 商品图片
+            %div 商品价格
+            %div 购买数量
+            %div
+          - items.each do |item|
+            - product = item.product
+            %div.tr
+              %div
+                %p= link_to product.title, edit_shop_product_path(product)
+                %p.text_sku= item.sku_value.join(', ')
+              %div
+                = image_tag(item.variant_image, height: 150)
+              %div
+                <s class="red">#{item.original_price}</s> #{item.price}
+              %div= item.number
+              %div= item.recent_return&.return_status_text
+        %div.order-right
+          %div.tr
+            %div
+              %span{class: 'count_down', data:{ status: order.status, timestamp: order.created_at.to_i }}
+                = I18n.t("order.#{order.status}")
+          %div.tr
+            %div= link_to '查看', shop_order_path(order)
+            - if order.unpaid?
+              %div= link_to '取消', cancel_shop_order_path(order), remote: true

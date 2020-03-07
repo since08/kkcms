@@ -1,0 +1,11 @@
+$('#btn_search_user').parents(".ui-dialog").remove();
+var html = "<%= j(render('search_user_modal', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '50%',
+    title: '搜索用户',
+    position: { my: 'top', at: 'top+250' }
+});
+SearchUser.bindEents();
+$('#btn_search_user').click();
+$('#input_search_user').focus();

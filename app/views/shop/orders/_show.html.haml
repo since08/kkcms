@@ -1,0 +1,73 @@
+%div.shop-order-detail
+  - order = resource
+  %div.header
+    %div
+      %span{ class: 'count_down', data:{ status: order.status, timestamp: order.created_at.to_i } }
+        = "订单状态： #{I18n.t('order.' + order.status)}"
+        %span.multi-status
+          - if order.paid?
+            %span= link_to '发货', new_shop_order_shipment_path(order), remote: true
+          - if order.delivered?
+            -#%span= link_to '查看物流', shipping_detail_shop_product_order_path(order), remote: true
+            %span= link_to '修改物流信息', edit_shop_order_shipment_path(order, order.shipment), remote: true
+          - if order.completed?
+            -#%span= link_to '查看物流', shipping_detail_shop_product_order_path(order), remote: true
+          - if order.unpaid?
+            %span.cancel= link_to '取消', cancel_shop_order_path(order), remote: true
+    %div
+      %span="物流信息: #{order.shipment.express.name}( #{order.shipment.express_number} )" if order.shipment
+  %div.body
+    %div.content
+      %div
+        %span= "订单编号：#{order.order_number}"
+        %span= "下单时间：#{order.created_at}"
+        %span= "支付渠道：#{order.pay_channel}"
+      %div
+        %table
+          %tr
+            %td 序号
+            %td id
+            %td 商品名称
+            %td 商品图片
+            %td 类别
+            %td 价格
+            %td 实付价格
+            %td 数量
+            %td
+          - order.order_items.each_with_index do |item, index|
+          %tr
+          - product = item.product
+            %td= index + 1
+            %td= item.id
+            %td
+              %p= product.title
+              %p.text_sku= item.sku_value.join(', ')
+            %td
+              = image_tag(item.variant_image, height: 200)
+            %td= product.category&.name
+            %td= item.original_price
+            %td= item.price
+            %td= item.number
+            %td= item.recent_return&.return_status_text
+        %span= "总价：¥#{order.total_price}，实付：¥#{order.final_price} (含快递：¥#{order.shipping_price})"
+    - user = order.user
+    %div.user_info
+      %div
+        %div 用户账户信息
+        %div
+          %span= "用户id：#{user.user_uuid}"
+          %span= "用户手机：#{user.mobile}"
+          %span= "用户邮箱：#{user.email}"
+      - address = order.shipping_info
+      %div
+        %div 收货地址信息
+        %div
+          %span= "收货人：#{address.name}"
+          %span= "联系方式：#{address.mobile}"
+          %span= "收货地址：#{address.full_address}"
+        %div
+          %span= "用户备注：#{order.memo}"
+      %div
+        %div 退换货申请
+        - order.customer_returns.each do |c_return|
+          %span= link_to "申请：#{c_return.id}", shop_customer_return_url(c_return)

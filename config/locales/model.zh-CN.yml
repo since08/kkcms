@@ -1,0 +1,393 @@
+"zh-CN":
+  activerecord:
+    models:
+      app_version: "app版本管理"
+      admin_user: "管理员"
+      hotline: "热线电话"
+      hotel: "酒店"
+      hotel_room: "酒店房间"
+      hotel_room_price: "房间价格"
+      hotel_order: "酒店订单"
+      hotel_refund: "退款列表"
+      info: "资讯"
+      info_type: "资讯类型"
+      exchange_rate: "汇率"
+      exchange_trader: "换汇人"
+      banner: "首页banner"
+      recommend: "热门推荐"
+      user: '用户'
+      weixin_user: '微信用户'
+      topic: '话题'
+      report: '举报'
+      wx_bill: '微信账单'
+      express: '快递'
+      j_user: '极光用户'
+      integral_rule: '积分规则'
+      integral: '积分明细'
+      comment: '评论管理'
+      sms_log: '短信日志'
+      view_rule: '浏览量规则'
+      coupon_temp: '优惠券模版'
+      coupon: '优惠券'
+      invite_award: '分销奖励'
+      pocket_money: '零钱明细'
+      withdrawal: '提款单'
+      feedback: '意见反馈'
+      contact: '官方咨询'
+      sauna: '桑拿'
+      activity: '活动'
+    attributes:
+      app_version:
+        version: "版本号"
+        platform: "app平台"
+        force_upgrade: "强制升级"
+        content: "更新内容"
+        title: "更新标题"
+        download_url: "下载链接"
+      admin_user:
+        email: "邮箱"
+        sign_in_count: "登陆次数"
+        current_sign_in_at: "当前登录"
+        last_sign_in_at: "上次登录时间"
+        last_sign_in_ip: "上次登录地点"
+        created_at: "注册时间"
+        password: "密码"
+        password_confirmation: "确认密码"
+      hotel:
+        title: "酒店标题"
+        location: "地点"
+        amap_poiid: "高德地图poi"
+        amap_location: "高德经纬度"
+        logo: "酒店图标"
+        description: "酒店描述"
+        published: "是否发布"
+        telephone: "联系电话"
+        doc: "导入文档"
+        star_level: "星级"
+        start_price: "起始价"
+        region: '区域'
+        mon_min_price: '星期一最低价'
+        tue_min_price: '星期二最低价'
+        wed_min_price: '星期三最低价'
+        thu_min_price: '星期四最低价'
+        fri_min_price: '星期五最低价'
+        sat_min_price: '星期六最低价'
+        sun_min_price: '星期日最低价'
+      hotel_order:
+        user: '用户'
+        order_number: '订单编号'
+        checkin_date: '入住时间'
+        checkout_date: '离店时间'
+        room_num: '房间数'
+        total_price: '总计金额'
+        final_price: '支付金额'
+        discount_amount: '折扣金额'
+        refund_price: '退款金额'
+        status: '订单状态'
+        pay_status: '支付状态'
+        pay_channel: '支付渠道'
+        telephone: '联系方式'
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
+        created_at: '创建时间'
+      hotel_room:
+        hotel: "酒店"
+        title: "房间标题"
+        text_tags: "房间标签"
+        text_notes: "房间提示"
+        published: "是否上架"
+        room_num_limit: "房间数量"
+      hotel_refund:
+        user: '用户'
+        order: '订单'
+        refund_status: '订单状态'
+        refund_price: '退款金额'
+        memo: '用户备注'
+        admin_memo: '管理员备注'
+      hotel_room_price:
+        price: "价格"
+        date: "单个日期"
+        dates: "多个日期"
+        room_num_limit: "房间数量"
+        room_sales: "已卖数量"
+      info:
+        title: "标题"
+        intro: "简介"
+        info_type: "类型"
+        date: "日期"
+        image: "图片"
+        description: "描述"
+        published: "是否发布"
+        stickied: "是否置顶"
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        doc: "导入文档"
+        coupon_ids: "可领的优惠券"
+        likes_count: '点赞数'
+        audio_link: "音频链接"
+        page_views: '浏览量(真实)'
+        view_increment: '浏览量(增量)'
+      info_type:
+        name: "类型名称"
+        published: "是否发布"
+        slug: 'url别名'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      exchange_trader:
+        memo: '备注'
+        position: '排序'
+        user: '用户'
+        score: '分数'
+        trader_type: '交易人类型'
+      exchange_rate:
+        s_currency: '当前币种'
+        s_currency_no: '当前币种编号'
+        t_currency: '目标币种'
+        t_currency_no: '目标币种编号'
+        rate_type: '汇率类型'
+        rate: '汇率'
+      banner:
+        source_title: '来源标题'
+        source_type: '来源类型'
+        image: '图片'
+      recommend:
+        source_title: '来源标题'
+        source_type: '来源类型'
+        source_image: '来源图片'
+      user:
+        user_name: '用户名'
+        user_uuid: 'UUID'
+        nick_name: '昵称'
+        avatar: '头像'
+        mobile: '手机号'
+        email: '邮箱'
+        signature: '签名'
+        last_visit: '上次登录'
+        reg_date: '注册日期'
+        mark: '备注'
+        followers_count: '粉丝'
+        following_count: '关注'
+        points: '积分'
+        login_days: '登录天数'
+        continuous_login_days: '连续登录天数'
+        share_count: '分享次数'
+        total_pocket_money: '余额'
+        invite_count: '成功邀请'
+        invite_users: '邀请数'
+        password: '密码'
+        blocked: '是否封禁'
+        level_special: '等级标记'
+        login_count: '打开次数'
+        r_level: '级别'
+        latlng: '经纬度'
+        location: '上次登陆位置'
+        created_at: '注册时间'
+        new_user: '新用户'
+        silenced: '禁言'
+        birthday: '生日'
+      weixin_user:
+        open_id: '微信ID'
+        head_img: '微信头像'
+        nick_name: '昵称'
+        user: '用户'
+        sex: '性别'
+        province: '省份'
+        city: '城市'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      topic:
+        user: '用户'
+        title: '标题'
+        body: '内容'
+        body_type: '类型'
+        address_title: '地址'
+        total_views: '浏览量'
+        likes_count: '点赞量'
+        total_comments: '评论数'
+        reports_count: '举报数'
+        status: '状态'
+        excellent: '是否精选'
+        cover_link: '封面'
+        page_views: '浏览量(真实)'
+        view_increment: '浏览量(增量)'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      report:
+        user: '用户'
+        target_type: '举报类别'
+        body: '举报原因'
+        target: '举报对象'
+        created_at: '创建时间'
+      express:
+        name: '快递名称'
+        code: '快递编码'
+      shipment:
+        express: '快递'
+        express_number: '快递单号'
+      wx_bill:
+        user: '用户'
+        order_number: '订单号'
+        transaction_id: '微信流水号'
+        source_type: '账单来源'
+        pay_success: '是否支付成功'
+        total_fee: '付款金额(元)'
+        fee_type: '货币类型'
+        time_end: '支付时间'
+        trade_type: '交易类型'
+      j_user:
+        user_id: '用户ID'
+        user_user_uuid: '用户ID'
+        user_nick_name: '用户昵称'
+        username: '昵称'
+        nick_name: '用户名'
+        created_at: "创建时间"
+      integral_rule:
+        option_type_alias: '任务'
+        option_type: '任务英文名'
+        limit_times: '限制次数'
+        icon: '图标'
+        points: '增加积分'
+        opened: '是否启用'
+      comment:
+        target_type: '话题'
+        body: '内容'
+        deleted_at: '删除时间'
+        deleted_reason: '删除原因'
+        created_at: '评论时间'
+        updated_at: '更新时间'
+        excellent: '精选'
+        user_nick_name: '用户昵称'
+        body_or_replies_body: '评论或回复内容'
+        user_nick_name_or_replies_user_nick_name: '用户昵称'
+        created_at_replies_created_at: '评论或回复时间'
+      sms_log:
+        mobile: '手机号'
+        content: '短信内容'
+        error_msg: '返回信息'
+        fee: '计费次数'
+        send_time: '发送时间'
+        arrival_time: '到达时间'
+        created_at: '创建时间'
+        updated_at: "修改时间"
+        status: '发送状态'
+      integral:
+        nick_name: '昵称'
+        avatar: '头像'
+        target_type: '目标类型'
+        target_id: '目标ID'
+        mark: '备注'
+        active_at: '领取时间'
+        created_at: '创建时间'
+        user_nick_name: '用户昵称'
+        option_type: '操作类型'
+        points: '积分'
+      view_rule:
+        day: '第几天'
+        interval: '间隔时间(分钟)'
+        min_increase: '最小值'
+        max_increase: '最大值'
+        hot: '热增长'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      coupon_temp:
+        name: '名称'
+        cover_link: '封面图'
+        short_desc: '条件说明'
+        coupon_type: '使用类型'
+        discount_type: '优惠类型'
+        new_user: '新用户'
+        limit_price: '限制金额'
+        reduce_price: '优惠金额'
+        expire_day: '有效期(天)'
+        discount: '折扣'
+        integral_on: '开启积分兑换'
+        integrals: '积分'
+        coupons_count: '总数'
+        coupon_received_count: '领取数'
+        address: '地址'
+        telephone: '联系方式'
+        published: '是否发布'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      coupon:
+        coupon_number: '券编号'
+        coupon_temp: '用途'
+        receive_time: '领取时间'
+        expire_time: '过期时间'
+        user_id: '用户'
+        target: '目标订单'
+        target_type: '消费路径'
+        pay_time: '下单时间'
+        created_at: "创建时间"
+        coupon_status: '状态'
+      invite_award:
+        direct_award: '直接邀请奖励'
+        indirect_award: '间接邀请奖励'
+        published: '是否发布'
+        created_at: "创建时间"
+      pocket_money:
+        user: '用户'
+        nick_name: '昵称'
+        user_nick_name: '昵称'
+        user_mobile: '手机号'
+        option_type: '类型'
+        memo: '备忘'
+        amount: '奖励金'
+        created_at: '创建时间'
+      withdrawal:
+        user: '用户'
+        real_name: '真实姓名'
+        account: '账户ID'
+        account_type: '账户类型'
+        account_memo: '开户行'
+        mobile: '手机号'
+        user_mobile: '手机号'
+        user_nick_name: '昵称'
+        amount: '申请金额'
+        option_status: '进度'
+        option_Time: '操作时间'
+        memo: '备忘'
+        created_at: '创建时间'
+      feedback:
+        content: '反馈内容'
+        contact: '联系方式'
+        dealt: '已处理'
+        created_at: '创建时间'
+      hotline:
+        position: '排序'
+        title: '标题'
+        telephone: '联系方式'
+        line_type: '热线类型'
+      contact:
+        mobile: '手机号'
+        email: '邮箱'
+        created_at: '创建时间'
+      sauna:
+        title: '标题'
+        location: '位置'
+        price: '人均'
+        telephone: '联系方式'
+        star_level: '星级'
+        amap_poiid: '高德poi'
+        amap_location: '高德经纬度'
+        logo: '图标'
+        published: '是否发布'
+        description: '描述'
+      activity:
+        title: '标题'
+        description: '内容'
+        banner: '封面图片'
+        begin_time: '开始时间'
+        end_time: '结束时间'
+        published: '是否发布'
+        canceled: '是否取消'
+        page_views: '浏览量(真实)'
+        view_increment: '浏览量(增量)'
+        likes_count: '点赞数'
+        doc: '导入文档'
+        created_at: '创建时间'
+        intro: '活动简介'
+      format: "%{attribute}%{message}"
+      messages:
+        blank: '不能为空'
+
+

@@ -1,0 +1,7 @@
+= semantic_form_for [:admin, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :nick_name
+    = f.input :email
+    = f.input :password
+  = f.actions

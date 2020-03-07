@@ -1,0 +1,15 @@
+%div.user_info
+  - if @user&.mobile.blank?
+    无此用户
+  - else
+    %table.user_info
+      %thead
+        %tr
+          %th 头像
+          %th 昵称
+          %th 手机号
+      %tbody
+        %tr
+          %td= avatar(@user.avatar_path, size: 70)
+          %td= @user.nick_name
+          %td= @user.mobile

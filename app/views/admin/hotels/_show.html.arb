@@ -1,0 +1,17 @@
+context.instance_eval do
+  attributes_table do
+    row(:logo) { |hotel| image_tag(hotel.preview_logo, height: 150) }
+    row(:title)
+    row(:region) { |hotel| Hotel::REGIONS_MAP[hotel.region] }
+    row(:location) { |hotel| link_to hotel.location, "http://uri.amap.com/marker?poiid=#{hotel.amap_poiid}", target: '_blank'}
+    row(:amap_poiid)
+    row(:amap_location)
+    row(:telephone)
+    row(:star_level)
+    row(:published)
+    HotelRoomPrice::WDAYS.each do |wday|
+      row("#{wday}_min_price")
+    end
+    row(:description) { |hotel| sanitize hotel.description }
+  end
+end

@@ -1,0 +1,7 @@
+$('.product_shipment').parents(".ui-dialog").remove();
+var html = "<%= j(render('form', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '发货'
+});

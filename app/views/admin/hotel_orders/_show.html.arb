@@ -1,0 +1,48 @@
+context.instance_eval do
+  attributes_table do
+    row(:user) { |order| link_to order.user.nick_name, admin_user_path(order.user), target: '_blank' }
+    row(:telephone)
+    row(:order_number)
+    row('酒店') do |order|
+      hotel = order.hotel_room.hotel
+      link_to hotel.title, admin_hotel_path(hotel), target: '_blank'
+    end
+    row('房间') do |order|
+      room = order.hotel_room
+      link_to room.title, admin_hotel_hotel_room_path(room.hotel_id, room), target: '_blank'
+    end
+    row(:checkin_date)
+    row(:checkout_date)
+    row(:room_num)
+    row(:final_price)
+    row(:total_price)
+    row(:discount_amount)
+    row('优惠券') { |order| order.coupon }
+    row(:refund_price)
+    row(:status) { |order| I18n.t("hotel_order.#{order.status}") }
+    row(:pay_status) { |order| I18n.t("hotel_order.#{order.pay_status}") }
+    row(:pay_channel)
+    row(:created_at)
+  end
+
+  columns do
+    column do
+      panel '订单房间明细' do
+        table_for resource.room_items do
+          column('时间') {|item| item['date']}
+          column('房间数') { resource.room_num }
+          column('总价') {|item| item['price']}
+        end
+      end
+    end
+
+    column do
+      panel '入往人信息' do
+        table_for resource.checkin_infos do
+          column('姓') {|info| info.last_name }
+          column('名') {|info| info.first_name }
+        end
+      end
+    end
+  end
+end

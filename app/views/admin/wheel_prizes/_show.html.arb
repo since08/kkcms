@@ -1,0 +1,15 @@
+context.instance_eval do
+  attributes_table do
+    row(:id)
+    row(:wheel_element)
+    row(:prize_type) {|prize| I18n.t("prize_type.#{prize.prize_type}")}
+    row(:name)
+    row(:image) { |prize| img_link_to_show(prize, prize.image_url.to_s) }
+    row(:face_value)
+    row(:limit_per_day)
+    row(:generation_rule)
+    row(:description)
+    row(:updated_at)
+    row(:created_at)
+  end
+end

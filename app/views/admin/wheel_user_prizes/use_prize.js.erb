@@ -1,0 +1,6 @@
+var html = "<%= j(render('use_prize', remote: true)) %>";
+$(html).dialog({
+  modal: true,
+  width: '40%',
+  title: '兑奖处理'
+});

@@ -1,0 +1,12 @@
+<% if @category.errors.any? %>
+var html = "<%= escape_javascript(render 'layouts/error_messages', object: @category) %>";
+$('#quick-errors').html(html);
+<% elsif @category.root? %>
+$.fancybox.close();
+window.location.reload();
+<% else %>
+var html = "<%= escape_javascript(render 'children', category: @category.parent) %>";
+$('.children').html(html);
+$('a.fancybox').fancybox();
+$.fancybox.close();
+<% end %>

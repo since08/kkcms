@@ -1,0 +1,20 @@
+= semantic_form_for [:admin, resource] do |f|
+  = f.inputs do
+    = f.input :name, required: true
+    = f.input :cover_link, as: :attachment, required: true,
+                           hint: '图片最大为 2MB',
+                           image: proc { |o| o.cover_link }
+    = f.input :short_desc, required: true
+    = f.input :coupon_type, as: :select, collection: AdminTrans::COUPON_TYPE, include_blank: false, required: true
+    = f.input :discount_type, as: :select, collection: AdminTrans::DISCOUNT_TYPE, include_blank: false, required: true
+    = f.input :reduce_price
+    = f.input :limit_price, hint: '类型为满减时候生效，满多少才有优惠'
+    = f.input :discount, hint: '类型为折扣的时候生效，0.8->8折, 0.95->95折'
+    = f.input :expire_day, hint: '用户领取后多少天有效, 默认30天'
+    = f.input :integrals
+    = f.input :address
+    = f.input :telephone
+    = f.input :new_user
+    = f.input :integral_on
+    = f.input :published
+    = f.actions

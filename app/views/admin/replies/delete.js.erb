@@ -1,0 +1,6 @@
+var html = "<%= j(render('delete_box', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '380px',
+    title: '删除回复'
+});

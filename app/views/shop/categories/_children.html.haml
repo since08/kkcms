@@ -1,0 +1,24 @@
+%div.child_head.category_head
+  %h5
+    %span= "#{category.name}: 子类别"
+    %span
+      = link_to '新增', quick_add_shop_categories_path(parent_id: category.id),
+                    class: ' action fancybox',
+                    data: { 'fancybox-type': 'ajax' }
+
+%div.child_body
+  - if category.children.blank?
+    %h3{style: 'padding: 30px'} 没有任何子类别
+  - category.children.each do |category|
+    %div
+      %div.child_img=image_tag(category.image_url.to_s, height: 130, width: 150)
+      %div{class: 'child_display', 'data-id': category.id}=category.name
+      %div.child_actions
+        %span
+          = link_to '编辑', quick_edit_shop_category_path(category),
+                           class: 'action fancybox',
+                           data: { 'fancybox-type': 'ajax' }
+        %span
+          = link_to '删除', shop_category_path(category),
+                                 method: 'delete', class: 'action',
+                                 data: { confirm: '确定删除吗？' }

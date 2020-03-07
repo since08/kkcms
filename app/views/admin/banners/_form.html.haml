@@ -1,0 +1,17 @@
+= semantic_form_for [:admin, @banner] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :image, as: :attachment, required: true,
+                     hint: '图片最大为 2MB',
+                     image: proc { |o| o.image.url(:sm) }
+    = f.input :source_type, as: :select, collection: AdminTrans::SOURCE_TYPES, prompt: true,
+              input_html: { class: 'trigger_search_form' }
+    = f.input :source_id, as: :hidden, input_html: { class: 'source_id' }
+    = f.input :source_title, input_html: { disabled: true, class: 'source_title' }
+  = f.actions
+
+= render 'admin/common/dp_sources'
+:javascript
+  $(function() {
+    HomepageEvent.bindFormEvents();
+  });

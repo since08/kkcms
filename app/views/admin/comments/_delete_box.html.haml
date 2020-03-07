@@ -1,0 +1,3 @@
+= form_tag delete_comment_admin_comment_path, method: 'post' do
+  = text_area_tag :reason, '', placeholder: '请填写删除的原因...'
+  = submit_tag '提交'

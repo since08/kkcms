@@ -1,0 +1,8 @@
+$('form.admin_image').parents(".ui-dialog").remove();
+var html = "<%= j(render('form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '上传图片'
+});

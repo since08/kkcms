@@ -1,0 +1,19 @@
+context.instance_eval do
+  attributes_table do
+    row(:merchant_user)
+    row(:hotel)
+    row(:hotel_room)
+    row(:room_num)
+    row(:card_img) { |req| image_tag(req.card_img.url.to_s, height: 150) }
+    row(:checkin_date)
+    row(:price)
+    row(:status)
+    row(:is_sold)
+    row(:is_withdrawn)
+    row(:refused_memo)
+    row(:passed_time)
+    row(:withdrawn_time)
+    row(:updated_time)
+    row(:created_time)
+  end
+end

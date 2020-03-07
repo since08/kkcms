@@ -1,0 +1,29 @@
+context.instance_eval do
+  column :id
+  column :name
+  column :coupon_type, sortable: false do |temp|
+    I18n.t("coupon_type.#{temp.coupon_type}")
+  end
+  column :discount_type, sortable: false do |temp|
+    I18n.t("discount_type.#{temp.discount_type}")
+  end
+  column :new_user, sortable: false
+  column :limit_price
+  column :reduce_price
+  column :discount
+  column :expire_day
+  column :integral_on, sortable: false
+  column :integrals
+  column :coupons_count
+  column :coupon_received_count
+  column :integrals
+  column(:published, sortable: false) { |temp| coupon_temp_publish_link(temp) }
+  actions name: '操作', defaults: false do |temp|
+      item '生成优惠券 ', generate_coupons_admin_coupon_temp_path(temp), remote: true unless temp.new_user
+      item '查看 ', admin_coupons_path(q: { coupon_temp_id_eq: temp.id })
+      item '编辑 ', edit_admin_coupon_temp_path(temp)
+      if temp.could_delete?
+        item '删除', admin_coupon_temp_path(temp), method: :delete, data: { confirm: '确定删除吗？' }
+      end
+  end
+end

@@ -1,0 +1,9 @@
+$('#hotel_amap_location').val("<%= @poi['location'] %>")
+$('.get_amap_detail').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('amap_detail', remote: true)) %>";
+$(html).dialog({
+  modal: false,
+  width: '30%'
+});
+

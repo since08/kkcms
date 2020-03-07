@@ -1,0 +1,10 @@
+context.instance_eval do
+  attributes_table do
+    row(:user) { |refund| link_to refund.user.nick_name, admin_user_path(refund.user), target: '_blank' }
+    row(:order) { |refund| link_to refund.hotel_order.order_number, admin_hotel_order_path(refund.hotel_order), target: '_blank' }
+    row(:refund_status) { |refund| I18n.t("hotel_refund.#{refund.refund_status}") }
+    row(:refund_price)
+    row(:memo)
+    row(:admin_memo)
+  end
+end

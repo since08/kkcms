@@ -1,0 +1,14 @@
+%div
+  - url = @image.new_record? ? shop_product_images_path(@product) : shop_product_image_path(@product, @image)
+  = semantic_form_for @image, url: url, remote: true do |f|
+    = f.inputs style: 'margin-bottom: -10px;' do
+      = f.input :imageable, collection: [[@product.title, @product.id]], prompt: true
+      %li
+        %label 图片剪裁
+        %div= image_tag('', id: 'cropbox')
+      = f.input :image, as: :attachment,
+                           hint: '第一张图片为商品主图',
+                           image: proc { |o| o.preview.to_s }
+      - %w[x y w h].each do |attr|
+        = f.hidden_field "crop_#{attr}", id: "crop_#{attr}"
+      = f.submit data: { disable_with: '请稍等...' }

@@ -1,0 +1,61 @@
+- level_str = resource.r_level.zero? ? "--用户" : "#{resource.r_level}级用户"
+%div.profile_container
+  %div.header
+    %div.user_info
+      %div.left
+        %span= avatar(resource.avatar_path, size: 70)
+      %div.right
+        %div
+          %span 用户昵称：
+          %span= resource.nick_name
+        %div
+          %span 活跃天数：
+          %span= "#{resource.counter.login_days}天"
+        %div
+          %span 积分:
+          %span= resource.counter.points
+          %span{ style: 'margin-left: 8px;' } 余额:
+          %span= resource.counter.total_pocket_money
+        %div
+          %span 备注:
+          %span= best_in_place resource, :mark, as: :input, url: [:admin, resource]
+          %span | #{level_str}
+          %span= resource.p_user.blank? ? '' : "| 邀请人: #{resource.p_user.nick_name}_#{resource.p_user.mobile}"
+    %div.account
+      %div
+        %span 于#{resource.reg_date&.strftime('%Y-%m-%d')}注册
+      %div
+        %span
+          - if resource.silenced_and_till?
+            %span.color-red 用户已禁言，解禁时间：#{resource.silence_till&.strftime('%Y-%m-%d')}
+      %div
+        %span
+          - silence_name = resource.silenced_and_till? ? '解封禁言' : '禁言'
+          = link_to silence_name, silence_user_admin_user_path(resource), method: 'get', remote: true
+        %span
+          - if resource.blocked?
+            = link_to '解封', unblock_admin_user_path(resource), method: 'post',
+                               remote: true, data: { confirm: '确定解封用户吗?' }
+          - else
+            = link_to '停封账号', block_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '停封后用户将无法登录APP, 确定吗?' }
+  %div.middle
+    %div.actions
+      %span
+        %span 关注
+        %span= link_to resource.following_count, followings_admin_user_path(resource)
+      %span
+        %span 粉丝
+        %span= link_to resource.followers_count, followers_admin_user_path(resource)
+  %div.bottom
+    %div.dynamics
+      %span
+        %span 话题
+        %span= link_to resource.topics.count, admin_topics_path(q: { user_id_eq: resource.id })
+      %span
+        %span 评论
+        %span= link_to resource.comments.count, admin_comments_path(q: { user_id_eq: resource.id })
+      %span
+        %span 回复
+        %span= link_to resource.replies.count, admin_comments_path(q: { user_id_eq: resource.id })
+

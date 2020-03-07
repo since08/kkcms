@@ -1,0 +1,13 @@
+context.instance_eval do
+  column(:id)
+  column(:wheel_element, sortable: false)
+  column(:prize_type) {|prize| I18n.t("prize_type.#{prize.prize_type}")}
+  column(:name, sortable: false)
+  column(:image, sortable: false) { |prize| img_link_to_show(prize, prize.image_url.to_s) }
+  column(:limit_per_day, sortable: false)
+  column(:generation_rule, sortable: false)
+  column(:created_at)
+  actions
+end
+
+

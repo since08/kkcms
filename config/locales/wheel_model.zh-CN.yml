@@ -1,0 +1,49 @@
+"zh-CN":
+  activerecord:
+    models:
+      wheel_element: '转盘元素'
+      wheel_prize: '转盘奖品'
+      cheap_prize_count: '小奖统计'
+      expensive_prize_count: '大奖统计'
+      wheel_user_prize: '用户抽奖情况'
+      wheel_count: '转盘统计'
+    attributes:
+      wheel_element:
+        name: '名称'
+        image: '图片'
+        position: '排序'
+      wheel_prize:
+        wheel_element: '转盘元素'
+        prize_type: '奖品类型'
+        name: '名称'
+        image: '图片'
+        face_value: '面值'
+        limit_per_day: '小奖每日限额'
+        generation_rule: '大奖产生规则'
+        description: '奖品领取说明'
+      cheap_prize_count:
+        wheel_prize: '奖品'
+        date: '日期'
+        prize_number: '中奖数量'
+      expensive_prize_count:
+        wheel_prize: '奖品'
+        current_user_num: '当前的用户数量'
+        is_giving: '是否已被用户抽中'
+      wheel_user_prize:
+        wheel_prize: '奖品'
+        user: '用户'
+        memo: '中奖说明'
+        used: '奖品是否兑换'
+        prize_type: '奖品类型'
+        is_expensive: '是否大奖'
+        used_time: '兑换时间'
+        used_memo: '兑换备注'
+        user_nick_name: '用户昵称'
+        user_mobile: '用户手机号'
+      wheel_count:
+        daily_new_user_count: '日新增注册人数'
+        new_user_count: '新增人数'
+        date: '日期'
+        lottery_times: '转盘次数'
+        lottery_users: '转盘用户数'
+        created_at: '创建日期'

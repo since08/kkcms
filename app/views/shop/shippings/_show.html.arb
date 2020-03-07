@@ -1,0 +1,36 @@
+context.instance_eval do
+  attributes_table do
+    row(:express)
+    row(:calc_rule) { |shipping| I18n.t("shipping.#{shipping.calc_rule}") }
+    row(:name)
+  end
+
+  return if resource.free_shipping?
+  div style: 'float: right; padding: 5px; padding-right: 30px' do
+    link_to '创建运费方式', new_shop_shipping_shipping_method_path(resource), remote: true
+  end
+  panel '运费方式' do
+    table_for resource.shipping_methods do
+      column(:name)
+      column(:first_item)
+      column(:first_price)
+      column(:add_item)
+      column(:add_price)
+      column('地区') do |method|
+        if method.default_method
+          '默认全地区运费方式'
+        else
+          span method.shipping_regions.pluck(:region_name).join(' ')
+          span link_to('新增地区', new_regions_shop_shipping_shipping_method_url(resource, method), remote: true)
+        end
+      end
+      column('操作') do |method|
+        span link_to('编辑', edit_shop_shipping_shipping_method_url(resource, method), remote: true)
+        span '|'
+        span link_to('删除', shop_shipping_shipping_method_url(resource, method),
+                     method: :delete,
+                     data: { confirm: '确定删除吗？' })
+      end
+    end
+  end
+end

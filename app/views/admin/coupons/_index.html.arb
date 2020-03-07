@@ -1,0 +1,26 @@
+context.instance_eval do
+  selectable_column
+  column :id
+  column :coupon_number, sortable: false
+  column :coupon_temp, sortable: false do |t|
+    str_name = t.coupon_temp.name
+    t.coupon_temp.new_user.yield_self { |it| it ? "新用户 | #{str_name}" : str_name }
+  end
+  column :receive_time
+  column :expire_time
+  column :user_id, sortable: false do |t|
+    avatar_profile(t.user, size: 70) if t.user.present?
+  end
+  column :target
+  column :pay_time
+  column :created_at
+  column :coupon_status, sortable: false do |t|
+    I18n.t("coupon_status.#{t.coupon_status}")
+  end
+  actions name: '操作', defaults: false do |coupon|
+    if coupon.receive_time.blank?
+      item '删除 ', admin_coupon_path(coupon), method: :delete, data: { confirm: '确定删除吗？' }
+      item ' 发放', award_admin_coupon_path(coupon), remote: true
+    end
+  end
+end

@@ -1,0 +1,16 @@
+- user = resource.user
+%div.topic-container
+  %div.person
+    %div
+      = avatar(user.avatar_path, size: 80)
+    %div
+      %h3{ style: 'margin-left: 15px' }= user.nick_name
+      %p= resource.created_at.strftime("%F %T")
+      %p 阅读量：#{resource.total_views} &nbsp;点赞数：#{resource.likes_count} &nbsp;&nbsp;评论数 #{resource.total_comments}
+  %div
+    %div= sanitize(resource.body)
+  %div
+    %div
+      - resource.images&.each_with_index do |image, index|
+        = link_to full_image(image), class: "color-box-group group#{resource.id}", title: "Pic #{index + 1}", 'data-group': resource.id do
+          = image_tag(image, width: "480px", height: "310px")

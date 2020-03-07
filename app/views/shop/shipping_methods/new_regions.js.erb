@@ -1,0 +1,35 @@
+var html = "<%= j(render('regions_form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '50%',
+    title: '选择关联地区'
+});
+
+$(".shipping_method_region_select span").click(
+  function(){
+    var selected = $(this).data('selected');
+    $(this).data('selected', !selected);
+    if(!selected) {
+      $(this).addClass('blue');
+    }else{
+      $(this).removeClass('blue')
+    }
+  }
+);
+
+$(".shipping_method_region_select button").bind('click', function(){
+  var list = $(".shipping_method_region_select span.blue");
+  var regions = [];
+  for(var i = 0; i < list.length; i++){
+    var region = { code: list[i].getAttribute('data-code'), name: list[i].getAttribute('data-name') };
+    regions.push(region)
+  }
+  var url = $(this).data('remote-url');
+  console.log(regions)
+  $.ajax({
+    url: url,
+    data: { regions: regions },
+    type: "POST"
+  });
+});

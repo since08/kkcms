@@ -1,0 +1,6 @@
+<% if @method.errors.blank? %>
+window.location.reload();
+<% else %>
+var html = "<%= j(render('form', remote: true)) %>";
+$('form.shop_shipping_method').replaceWith(html);
+<% end %>

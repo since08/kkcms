@@ -1,0 +1,24 @@
+%div.categories
+  %div.roots
+    %div.root_head.category_head
+      %h5
+        %span 主类别
+        %span= link_to '新增', quick_add_shop_categories_path, class: 'fancybox action', data: { 'fancybox-type': 'ajax' }
+    %div.root_body
+      - Shop::Category.roots.position_desc.each do |category|
+        %div{'data-id': category.id, class: 'root_category', id: "category_#{category.id}"}
+          %div{class: 'category_display', style: 'width: 30%'}
+            = editable_text_column category, :name
+          %div{class: 'category_operation'}
+            = link_to '选择', children_shop_category_path(category), class: 'action select_root', remote: true
+            = link_to '删除', shop_category_path(category),
+                           method: 'delete', class: 'action',
+                           data: { confirm: '确定删除吗？' }
+  %div.children
+
+:javascript
+  $(function() {
+    $('a.fancybox').fancybox();
+    $('a.select_root').first().click();
+    DpReposition.call('.root_body', '/shop/categories/:id/reposition')
+  });

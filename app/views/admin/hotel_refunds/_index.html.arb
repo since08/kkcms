@@ -1,0 +1,11 @@
+context.instance_eval do
+  column(:user) { |refund| link_to refund.user.nick_name, admin_user_path(refund.user), target: '_blank' }
+  column(:order) { |refund| link_to refund.hotel_order.order_number, admin_hotel_order_path(refund.hotel_order), target: '_blank' }
+  column(:refund_status) { |refund| I18n.t("hotel_refund.#{refund.refund_status}") }
+  column(:refund_price)
+  column(:memo)
+  column(:admin_memo)
+  actions defaults: false do |refund|
+    item '查看', admin_hotel_refund_path(refund)
+  end
+end

@@ -1,0 +1,6 @@
+= semantic_form_for [@shipping] do |f|
+  = f.inputs do
+    = f.input :express, include_blank: false
+    = f.input :calc_rule, collection: AdminTrans::SHIPPING_RULES, prompt: true
+    = f.input :name
+    = f.actions

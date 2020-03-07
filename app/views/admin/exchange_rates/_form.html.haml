@@ -1,0 +1,11 @@
+= semantic_form_for [:admin, @exchange_rate] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :rate_type, collection: AdminTrans:: EXCHANGE_TYPES, prompt: true
+    = f.input :s_currency
+    = f.input :s_currency_no
+    = f.input :t_currency
+    = f.input :t_currency_no
+    = f.input :rate
+  = f.actions
+

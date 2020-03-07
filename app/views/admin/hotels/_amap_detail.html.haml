@@ -1,0 +1,6 @@
+%div.attributes_table{style: 'padding: 20px'}
+  %table
+    - [ ['酒店名称', 'name'], ['地点', 'address'], ['联系电话', 'tel'], ['经纬度', 'location'] ].each do |value|
+      %tr
+        %th{style: 'width:0'}= value[0]
+        %td= @poi[value[1]]

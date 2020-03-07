@@ -1,0 +1,9 @@
+$('.user_info').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('user_info', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '用户信息',
+    position: {my: 'top', at: 'left+930 top+280'}
+});
