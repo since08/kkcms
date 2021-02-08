@@ -50,7 +50,7 @@ gem 'devise'
 gem 'rails-i18n'
 
 # 文件上传处理 相关
-gem 'carrierwave', '~> 1.2', '>= 1.2.2'
+gem 'carrierwave', '~> 1.3'
 gem 'carrierwave-upyun', '~> 0.2.2'
 gem 'mini_magick', '~> 4.8'
 gem 'pandoc-ruby'
